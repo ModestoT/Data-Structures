@@ -21,6 +21,7 @@ class ListNode:
   def insert_before(self, value):
     current_prev = self.prev
     self.prev = ListNode(value, current_prev, self)
+    print('Inside insert_before',self.prev.next.value)
     if current_prev:
       current_prev.next = self.prev
 
@@ -44,7 +45,17 @@ class DoublyLinkedList:
     return self.length
 
   def add_to_head(self, value):
-    pass
+    new_node = ListNode(value)
+
+    if not self.head and not self.tail:
+      self.head = new_node
+      self.tail = new_node
+
+    else:
+      old_head = self.head
+      self.head.insert_before(value)
+
+      self.head = old_head.prev
 
   def remove_from_head(self):
     pass
@@ -66,3 +77,13 @@ class DoublyLinkedList:
     
   def get_max(self):
     pass
+
+ln = ListNode(1)
+dll = DoublyLinkedList(ln)
+
+print('current head value',dll.head.value)
+
+dll.add_to_head(10)
+
+print('current head value',dll.head.value)
+print('heads next value',dll.head.next.value)
