@@ -61,4 +61,15 @@ class Queue:
     pass
 
   def len(self):
-    pass
+    val = self.storage.head
+    count = self.size
+
+    while val:
+      count += 1
+      val = val.get_next()
+    
+    return count
+
+q = Queue()
+
+print(q.len())
