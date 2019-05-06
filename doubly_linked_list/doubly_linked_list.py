@@ -42,7 +42,14 @@ class DoublyLinkedList:
     self.length = 1 if node is not None else 0
 
   def __len__(self):
-    return self.length
+    val = self.head
+    count = 0
+
+    while val:
+      count +=1
+      val = val.next
+    
+    return count
 
   def add_to_head(self, value):
     new_node = ListNode(value)
@@ -87,3 +94,4 @@ dll.add_to_head(10)
 
 print('current head value',dll.head.value)
 print('heads next value',dll.head.next.value)
+print(dll.__len__())
