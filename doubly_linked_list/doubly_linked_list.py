@@ -120,15 +120,24 @@ class DoublyLinkedList:
     pass
 
   def delete(self, node):
-    pass
-    
+    if not node.prev and not node.next:
+      self.head = None
+      self.tail = None
+
+    elif not node.prev:
+      node.next.prev = node.prev
+      self.head = node.next
+    else:
+      node.next.prev = node.prev
+      node.prev.next = node.next
+      
   def get_max(self):
     pass
 
-ln = ListNode(1)
-dll = DoublyLinkedList(ln)
+# ln = ListNode(1)
+# dll = DoublyLinkedList(ln)
 
 
-dll.add_to_head(10)
+# dll.add_to_head(10)
 
-print(len(dll))
+# print(len(dll))
