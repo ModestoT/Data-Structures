@@ -114,7 +114,10 @@ class DoublyLinkedList:
       return old_tail.value
 
   def move_to_front(self, node):
-    pass
+    print(node.value)
+    current = node
+    self.delete(node)
+    self.add_to_head(current.value)
 
   def move_to_end(self, node):
     pass
@@ -127,10 +130,13 @@ class DoublyLinkedList:
     elif not node.prev:
       node.next.prev = node.prev
       self.head = node.next
+    elif not node.next:
+      self.tail = node.prev
+      node.prev.next = node.next
     else:
       node.next.prev = node.prev
       node.prev.next = node.next
-      
+
   def get_max(self):
     pass
 
