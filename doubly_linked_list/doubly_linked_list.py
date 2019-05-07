@@ -43,7 +43,7 @@ class DoublyLinkedList:
   def __len__(self):
     val = self.head
     count = 0
-
+    # Loops through the linked list until the nodes next value is None, counts each node for the length
     while val:
       count +=1
       val = val.next
@@ -51,14 +51,14 @@ class DoublyLinkedList:
     return count
 
   def add_to_head(self, value):
-    new_node = ListNode(value)
-
+    new_node = ListNode(value) # Store a new ListNode instance incase one has not been made already
+  
     if not self.head and not self.tail:
       self.head = new_node
       self.tail = new_node
 
     else:
-      old_head = self.head
+      old_head = self.head # store the old head node for use when setting the new head node
       self.head.insert_before(value)
 
       self.head = old_head.prev
@@ -124,16 +124,19 @@ class DoublyLinkedList:
     self.add_to_tail(current.value)
 
   def delete(self, node):
+    # checks if the node is the only node in the linked list
     if not node.prev and not node.next:
       self.head = None
       self.tail = None
-
+    # checks if the node has anything behind it, if not it's the head
     elif not node.prev:
       node.next.prev = node.prev
       self.head = node.next
+    # checks if the node has anything after it, if not it's the tail
     elif not node.next:
       self.tail = node.prev
       node.prev.next = node.next
+    # catches all the deletes for nodes that are not the head or the tail
     else:
       node.next.prev = node.prev
       node.prev.next = node.next
