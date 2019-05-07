@@ -21,7 +21,6 @@ class ListNode:
   def insert_before(self, value):
     current_prev = self.prev
     self.prev = ListNode(value, current_prev, self)
-    print('Inside insert_before',self.prev.next.value)
     if current_prev:
       current_prev.next = self.prev
 
@@ -65,7 +64,21 @@ class DoublyLinkedList:
       self.head = old_head.prev
 
   def remove_from_head(self):
-    pass
+    if not self.head and not self.tail:
+      return None
+
+    if not self.head.next:
+      head = self.head
+
+      self.head = None
+      self.tail = None
+      
+      return head.value
+    else:
+      old_head = self.head
+      self.head = self.head.next
+
+      return old_head.value
 
   def add_to_tail(self, value):
     pass
@@ -88,10 +101,7 @@ class DoublyLinkedList:
 ln = ListNode(1)
 dll = DoublyLinkedList(ln)
 
-print('current head value',dll.head.value)
 
 dll.add_to_head(10)
 
-print('current head value',dll.head.value)
-print('heads next value',dll.head.next.value)
-print(dll.__len__())
+print(len(dll))
