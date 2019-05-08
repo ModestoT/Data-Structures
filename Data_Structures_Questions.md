@@ -13,23 +13,23 @@ Answer the following questions for each of the data structures you implemented a
 ## Binary Search Tree
 
 1. What is the runtime complexity of `insert`? 
-
+  O(logn)
 2. What is the runtime complexity of `contains`?
-
+  O(logn)
 3. What is the runtime complexity of `get_max`? 
-
+  O(logn)
 ## Heap
 
 1. What is the runtime complexity of `_bubble_up`?
-
+  O(logn)
 2. What is the runtime complexity of `_sift_down`?
-
+  O(logn)
 3. What is the runtime complexity of `insert`?
-
+  O(logn)
 4. What is the runtime complexity of `delete`?
-
+  O(logn)
 5. What is the runtime complexity of `get_max`?
-
+  O(c)
 ## Doubly Linked List
 
 1. What is the runtime complexity of `ListNode.insert_after`?
