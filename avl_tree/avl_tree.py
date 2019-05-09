@@ -27,7 +27,7 @@ class AVLTree:
     self.update_balance()
     
     if self.node != None: 
-      print ('-' * level * 2, pref, self.node.key, "[" + str(self.height) + ":" + str(self.balance) + "]", 'L' if self.is_leaf() else ' '    )
+      print ('-' * level * 2, pref, self.node.key, "[" + str(self.height) + ":" + str(self.balance) + "]", 'L')
       if self.node.left != None: 
         self.node.left.display(level + 1, '<')
       if self.node.right != None:
@@ -76,4 +76,18 @@ class AVLTree:
   if we need to rebalance
   """
   def insert(self, key):
-    pass
+    if not self.node:
+      self.node = Node(key)
+
+    if key < self.node.key:
+      if not self.node.left:
+        self.node.left = AVLTree(Node(key))
+        self.rebalance()
+      else:
+        self.node.left.insert(key)
+    else:
+      if not self.node.right:
+        self.node.right = AVLTree(Node(key))
+        self.rebalance()
+      else:
+        self.node.right.insert(key)
