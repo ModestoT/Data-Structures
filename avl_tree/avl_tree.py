@@ -38,8 +38,16 @@ class AVLTree:
   in the tree
   """
   def update_height(self):
-    pass
+    left_height = self.node.left.update_height() if self.node.left else -1
+    right_height = self.node.right.update_height() if self.node.right else -1
 
+    if left_height > right_height:
+      self.height = left_height + 1
+      return left_height + 1
+    else:
+      self.height = right_height + 1
+      return right_height + 1
+    
   """
   Updates the balance factor on the AVLTree class
   """
@@ -82,12 +90,25 @@ class AVLTree:
     if key < self.node.key:
       if not self.node.left:
         self.node.left = AVLTree(Node(key))
-        self.rebalance()
+        self.update_balance()
       else:
         self.node.left.insert(key)
     else:
       if not self.node.right:
         self.node.right = AVLTree(Node(key))
-        self.rebalance()
+        self.update_balance()
       else:
         self.node.right.insert(key)
+
+tree = AVLTree()
+tree.node = Node(5)
+print('updated',tree.update_height())
+
+tree.node.left = AVLTree(Node(3))
+print('updated',tree.update_height())
+
+tree.node.right = AVLTree(Node(6))
+print('updated',tree.update_height())
+
+tree.node.right.node.right = AVLTree(Node(8))
+print('updated',tree.update_height())
